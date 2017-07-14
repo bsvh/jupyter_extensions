@@ -69,11 +69,15 @@ class ScienceImports(Magics):
 
             import pandas as pd
 
+        The above command can also be run without the commas:
+
+        >>> %scimp mpl plt nl pd
+
         """
 
 
         imports = []
-        for key in (x.strip() for x in line.split(",")):
+        for key in (x.strip() for x in line.replace(",", " ").split(" ") if x):
             if key in ("help", "list"):
                 getattr(self, key)()
                 break
